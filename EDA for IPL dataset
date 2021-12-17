@@ -1,0 +1,94 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns #samuel norman seaborn
+​
+deliveries = pd.read_csv("https://github.com/ashutoshkrris/Data-Analysis-with-Python/raw/master/zerotopandas-course-project-starter/dataset/deliveries.csv")
+​
+matches = pd.read_csv("https://github.com/ashutoshkrris/Data-Analysis-with-Python/raw/master/zerotopandas-course-project-starter/dataset/matches.csv")
+​
+matches.shape
+​
+matches.Season.unique()
+matches.Season.nunique()
+matches.Season.value_counts()
+​
+sns.catplot(x = "Season",
+            data = matches,
+            kind = "count",aspect = 2)
+plt.title("Matches on each year")
+plt.ylabel("No of matches")
+​
+​
+sns.catplot(x = "city",
+            data = matches,
+            kind = "count",aspect = 6)
+plt.title("Matches hosted by cities")
+plt.ylabel("No of matches")
+​
+#i want to know the details of match played on 16-04-2010
+matches[matches.date == "16-04-2010"]
+​
+#i want to know the details of matches played by CSK
+csk = matches[matches.team1 == 'Chennai Super Kings']
+matches.team1.unique()
+''' Find which team won by highest margin of runs,
+Find who got most player of the match, Find who won most of the matches 
+and use represent in graph'''
+
+matches[matches.win_by_runs == matches.win_by_runs.max()]
+
+plt.figure(figsize = (8,4))
+mom_player=matches.player_of_match.value_counts()[:10]
+
+sns.barplot(x = mom_player.index, 
+            y = mom_player,
+            orient='v')
+plt.xticks(rotation=45)
+
+matches.player_of_match.value_counts()
+
+sns.catplot(x = 'player_of_match', data = matches, kind = 'count')
+
+deliveries = pd.read_csv("https://github.com/ashutoshkrris/Data-Analysis-with-Python/raw/master/zerotopandas-course-project-starter/dataset/deliveries.csv")
+
+matches = pd.read_csv("https://github.com/ashutoshkrris/Data-Analysis-with-Python/raw/master/zerotopandas-course-project-starter/dataset/matches.csv")
+
+
+matches.isnull().sum()
+matches.isnull().mean()
+
+matches.shape
+
+matches.Season.unique()
+matches.Season.nunique()
+matches.Season.value_counts()
+
+sns.catplot(x = "Season",
+            data = matches,
+            kind = "count",aspect = 2)
+plt.title("Matches on each year")
+plt.ylabel("No of matches")
+
+sns.catplot(x = "city",
+            data = matches,
+            kind = "count",aspect = 6)
+plt.title("Matches hosted by cities")
+plt.ylabel("No of matches")
+
+#i want to know the details of match played on 16-04-2010
+matches[matches.date == "16-04-2010"]
+
+#i want to know the details of matches played by CSK
+csk = matches[matches.team1 == 'Chennai Super Kings']
+matches.team1.unique()
+
+matches[matches.win_by_runs == matches.win_by_runs.max()]
+plt.figure(figsize = (8,4))
+mom_player=matches.player_of_match.value_counts()[:10]
+sns.barplot(x = mom_player.index, 
+            y = mom_player,
+            orient='v')
+plt.xticks(rotation=45)
+matches.player_of_match.value_counts()
+sns.catplot(x = 'player_of_match', data = matches, kind = 'count')
+
